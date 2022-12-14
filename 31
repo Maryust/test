@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+
+/*
+У юзера есть 3 попытки
+Если юзер ответил верно - "правильно!" и завершить работу
+Если неверный ответ 1 и 2 раза, вывести "Подумай еще!" и еще раз запросить ответ
+Ввел 3 неверных ответа "Обидно, приходи в другой раз" и завершить работу
+Подсказка при первой попытке, на 2 и 3 итерации - недоступно. Если
+ введет "Подсказка" - вывести любую подсказку. На 2-3 недоступно
+Заюзал подсказку и ошибся "Обидно, приходи в другой раз"
+ */
+public class Task31 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Сидит дед, во сто шуб одет, кто его раздевает, тот слезы проливает");
+
+        int n = 3;
+        boolean help = false;
+        while (n > 0){
+            String answer = sc.nextLine();
+            switch (answer){
+                case "Заархивированный вирус":
+                    System.out.println("Правильно!");
+                    n = 0;
+                    break;
+                case "Подсказка":
+                    if (n == 3){
+                        help = true;
+                        System.out.println("Подсказка всем подсказкам");
+                        break;
+                    } else {
+                        System.out.println("Подсказка уже недоступна!");
+                    };
+                default:
+                    if (n==3 || n==2 && help == false){
+                        System.out.println("Подумай еще!");
+                    } else if (help){
+                        System.out.println("Обидно, приходи в другой раз");
+                        n = 0;
+                        break;
+                    } else if (n==1){
+                        System.out.println("Обидно, приходи в другой раз");
+                        break;
+                    }
+            }
+            n--;
+        }
+    }
+}
